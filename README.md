@@ -33,17 +33,13 @@
  
     html { scroll-behavior: smooth; }
  
-    body {
-      font-family: 'Lato', sans-serif;
-      color: var(--brown-dark);
-      background-color: var(--cream);
-      /* Subtle warm noise texture via SVG data-URI */
-      background-image:
-        radial-gradient(ellipse at 20% 10%,  rgba(242,138,47,0.08) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 90%,  rgba(220,101,39,0.07) 0%, transparent 55%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      min-height: 100vh;
-    }
+   body {
+  background-image: url('sunset.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* parallax-like scroll effect */
+}
  
     /* ── Layout Wrapper ── */
     .wrapper {
