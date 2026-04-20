@@ -22,7 +22,7 @@
       --cream:        #fff4ea;
       --warm-light:   #fff1e1;
       --brown-dark:   #5a2f1f;
-      --brown-mid:    #7a4b34;
+      --brown-mid:    #5a2f1f;
       --brown-light:  #5a2f1f;
       --orange-start: #f28a2f;
       --orange-end:   #dc6527;
