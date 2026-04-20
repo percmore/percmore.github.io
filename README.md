@@ -23,7 +23,7 @@
       --warm-light:   #fff1e1;
       --brown-dark:   #5a2f1f;
       --brown-mid:    #7a4b34;
-      --brown-light:  #a0614a;
+      --brown-light:  #5a2f1f;
       --orange-start: #f28a2f;
       --orange-end:   #dc6527;
       --card-bg:      rgba(255, 241, 225, 0.92);
