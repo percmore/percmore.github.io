@@ -1,205 +1,671 @@
-export default function PercGithubLandingPage() {
-  const featureCards = [
-    {
-      title: "Expression First",
-      text: "P.E.R.C. opens with reflection, validates emotion without stigma, and helps users move toward calm, balanced communication.",
-    },
-    {
-      title: "Private Member Access",
-      text: "This experience is intended for paying members only, creating a more focused, protected space for personal reflection.",
-    },
-    {
-      title: "SoulWynd Codex Aligned",
-      text: "Built on Soul, Signal, and Soil — empathy, integrity, and sustainable pace guide every interaction.",
-    },
-  ];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P.E.R.C. | Personal Emotional Reflection Companion</title>
+  <style>
+    :root {
+      --bg-dark: #2b120f;
+      --bg-deep-red: #4a1714;
+      --bg-rust: #7a3a23;
+      --bg-amber: #b36a3c;
+      --bg-cream: #f3e6d0;
+      --panel: rgba(20, 12, 10, 0.72);
+      --panel-light: rgba(255, 255, 255, 0.07);
+      --border: rgba(255, 255, 255, 0.12);
+      --text-main: #fff6ea;
+      --text-soft: #ead9c4;
+      --text-muted: #cbb7a3;
+      --button-dark: #201310;
+      --button-light: #fff1dc;
+      --button-light-text: #4d2418;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+      --radius-lg: 28px;
+      --radius-md: 20px;
+      --radius-sm: 14px;
+      --max-width: 1280px;
+    }
 
-  const sideMenu = [
-    "New Reflection",
-    "Today felt heavy",
-    "Help me say this calmly",
-    "What am I carrying?",
-    "How do I slow down?",
-  ];
+    * {
+      box-sizing: border-box;
+    }
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a0f0d] via-[#2a160f] to-[#3d1d14] text-stone-100 font-sans">
-      <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,rgba(255,180,120,0.12),transparent_60%)]">
-        <div className="flex min-h-screen">
-          {/* Sidebar */}
-          <aside className="hidden lg:flex w-72 flex-col border-r border-white/10 bg-[#1a0f0d]/70 backdrop-blur-xl">
-            <div className="px-4 pt-5">
-              <button className="w-full rounded-2xl bg-[#fff1dc] px-4 py-3 text-sm font-bold text-[#4d2418] hover:bg-[#ffe6c4] transition-colors shadow-lg shadow-black/20">
-                + Start New Reflection
-              </button>
-            </div>
+    html {
+      scroll-behavior: smooth;
+    }
 
-            <div className="px-4 py-5 space-y-3">
-              {sideMenu.map((item) => (
-                <button
-                  key={item}
-                  className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm font-medium text-stone-200 hover:bg-white/10 transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text-main);
+      background:
+        linear-gradient(135deg,
+          var(--bg-deep-red) 0%,
+          var(--bg-rust) 28%,
+          var(--bg-amber) 62%,
+          var(--bg-cream) 100%);
+      min-height: 100vh;
+    }
 
-            <div className="mt-auto p-4 border-t border-white/10">
-              <div className="rounded-2xl bg-white/5 px-4 py-4 text-sm text-stone-300">
-                <div className="font-bold text-stone-100">P.E.R.C. Membership</div>
-                <p className="mt-2 leading-6">
-                  Private access for paid users seeking a protected, warm reflection space.
-                </p>
-              </div>
-            </div>
-          </aside>
+    .overlay {
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.26);
+    }
 
-          {/* Main */}
-          <main className="flex-1 flex flex-col">
-            <header className="border-b border-white/10 bg-[#1d120f]/65 backdrop-blur-xl px-5 md:px-8 py-4 flex items-center justify-between">
-              <div>
-                <div className="text-2xl md:text-3xl font-black tracking-wide text-[#fff6e9] drop-shadow-sm">
-                  P.E.R.C.
-                </div>
-                <div className="text-sm md:text-base font-medium text-stone-200">
-                  Personal Emotional Reflection Companion
-                </div>
-              </div>
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
 
-              <div className="flex items-center gap-3">
-                <button className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-stone-100 hover:bg-white/10 transition-colors">
-                  Sign In
-                </button>
-                <button className="rounded-xl bg-[#fff1dc] px-4 py-2 text-sm font-bold text-[#4d2418] hover:bg-[#ffe6c4] transition-colors shadow-lg shadow-black/20">
-                  Member Access
-                </button>
-              </div>
-            </header>
+    .sidebar {
+      width: 280px;
+      background: rgba(24, 14, 12, 0.84);
+      border-right: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      padding: 24px 18px;
+    }
 
-            <section className="px-5 md:px-8 py-8 md:py-10">
-              <div className="max-w-6xl mx-auto grid gap-8 xl:grid-cols-[1.2fr_0.8fr] items-start">
-                <div className="space-y-8">
-                  <div className="rounded-[2rem] border border-white/10 bg-[#241613]/70 backdrop-blur-xl p-6 md:p-8 shadow-2xl shadow-black/30">
-                    <p className="text-sm md:text-base font-semibold uppercase tracking-[0.2em] text-amber-200">
-                      Generate Balanced Communication
-                    </p>
-                    <h1 className="mt-3 text-4xl md:text-6xl font-black leading-tight text-[#fff7ea] drop-shadow-sm">
-                      Reflect with clarity.
-                      <span className="block text-[#ffe2c0]">Respond with balance.</span>
-                    </h1>
-                    <p className="mt-5 max-w-3xl text-base md:text-lg leading-8 font-medium text-stone-100">
-                      P.E.R.C. helps users turn private thoughts into calm, balanced expression. Built with the SoulWynd Codex, this member-based experience supports emotional reflection, healthier communication, and steady self-awareness through empathy, integrity, and sustainable pace.
-                    </p>
-                    <div className="mt-6 flex flex-wrap gap-3">
-                      <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-stone-100">
-                        Non-diagnostic
-                      </span>
-                      <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-stone-100">
-                        Private reflection
-                      </span>
-                      <span className="rounded-full border border-white/10 bg-white/10 px-4 py-2 text-sm font-semibold text-stone-100">
-                        Codex-guided support
-                      </span>
-                    </div>
-                  </div>
+    .sidebar .new-btn {
+      width: 100%;
+      border: 0;
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      background: linear-gradient(90deg, #7d1f1a, #a24c22, #be7b38);
+      color: var(--text-main);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
 
-                  <div className="rounded-[2rem] border border-white/10 bg-[#241613]/70 backdrop-blur-xl shadow-2xl shadow-black/30 overflow-hidden">
-                    <div className="border-b border-white/10 px-5 md:px-6 py-4 bg-black/10">
-                      <div className="text-lg font-bold text-[#fff6e9]">Reflection Space</div>
-                      <div className="text-sm text-stone-300">
-                        ChatGPT-style conversation flow for member-only emotional reflection.
-                      </div>
-                    </div>
+    .sidebar nav {
+      margin-top: 24px;
+      display: grid;
+      gap: 12px;
+    }
 
-                    <div className="px-5 md:px-6 py-6 space-y-6">
-                      <div className="flex justify-start">
-                        <div className="max-w-2xl rounded-[1.5rem] rounded-bl-md border border-white/10 bg-[#1c120f]/80 px-5 py-4 text-stone-100 shadow-lg shadow-black/20">
-                          Hi, I'm here with you. This space is yours — no judgment, no rush. What's been sitting with you today?
-                        </div>
-                      </div>
+    .sidebar .nav-item {
+      border: 1px solid var(--border);
+      background: var(--panel-light);
+      color: var(--text-soft);
+      text-decoration: none;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
 
-                      <div className="flex justify-end">
-                        <div className="max-w-2xl rounded-[1.5rem] rounded-br-md bg-gradient-to-r from-red-800 via-orange-700 to-amber-700 px-5 py-4 text-white shadow-lg shadow-black/20 font-medium">
-                          I need help putting how I feel into words without sounding reactive.
-                        </div>
-                      </div>
+    .sidebar .nav-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
 
-                      <div className="flex justify-start">
-                        <div className="max-w-2xl rounded-[1.5rem] rounded-bl-md border border-white/10 bg-[#1c120f]/80 px-5 py-4 text-stone-100 shadow-lg shadow-black/20">
-                          That makes sense. We can slow it down and shape it clearly. Start with one thread: what feels most important to express without losing your balance?
-                        </div>
-                      </div>
-                    </div>
+    .membership-box {
+      margin-top: auto;
+      border: 1px solid var(--border);
+      background: var(--panel-light);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      color: var(--text-soft);
+    }
 
-                    <div className="border-t border-white/10 bg-black/10 px-4 md:px-6 py-4">
-                      <div className="rounded-[1.75rem] border border-white/10 bg-[#140d0b]/80 p-3 shadow-lg shadow-black/20">
-                        <textarea
-                          className="w-full min-h-[120px] resize-none rounded-2xl bg-transparent px-4 py-3 text-base font-medium text-stone-100 placeholder:text-stone-400 outline-none"
-                          placeholder="Share what is on your mind..."
-                        />
-                        <div className="mt-3 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-                          <div className="flex flex-wrap gap-2">
-                            {[
-                              "Expression first",
-                              "Calm guidance",
-                              "Clear words",
-                              "Private access",
-                            ].map((tag) => (
-                              <span
-                                key={tag}
-                                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs md:text-sm font-semibold text-stone-300"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                          <button className="rounded-2xl bg-[#fff1dc] px-5 py-3 text-sm md:text-base font-black text-[#4d2418] hover:bg-[#ffe6c4] transition-colors shadow-lg shadow-black/20">
-                            Send Reflection
-                          </button>
-                        </div>
-                      </div>
-                      <p className="mt-3 text-center text-xs md:text-sm font-medium text-stone-300">
-                        Background images and seasonal artwork can be uploaded later without changing this structure.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+    .membership-box h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--text-main);
+    }
 
-                <div className="space-y-6">
-                  <div className="rounded-[2rem] border border-white/10 bg-[#241613]/70 backdrop-blur-xl p-6 shadow-2xl shadow-black/30">
-                    <h2 className="text-xl font-black text-[#fff6e9]">Built from the Codex</h2>
-                    <p className="mt-3 text-sm md:text-base leading-7 font-medium text-stone-100">
-                      SoulWynd's core trifecta — Soul, Signal, and Soil — shapes every reflection. P.E.R.C. invites expression first, validates emotion without shame, and supports calm, balanced communication at a sustainable pace.
-                    </p>
-                  </div>
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
-                  <div className="grid gap-4">
-                    {featureCards.map((card) => (
-                      <div
-                        key={card.title}
-                        className="rounded-[1.75rem] border border-white/10 bg-[#241613]/70 backdrop-blur-xl p-5 shadow-xl shadow-black/25"
-                      >
-                        <h3 className="text-lg font-black text-[#fff6e9]">{card.title}</h3>
-                        <p className="mt-2 text-sm md:text-base leading-7 font-medium text-stone-100">
-                          {card.text}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(24, 14, 12, 0.58);
+      backdrop-filter: blur(10px);
+    }
 
-                  <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#4d2418]/80 to-[#7b3c24]/70 p-6 shadow-2xl shadow-black/30">
-                    <h3 className="text-xl font-black text-[#fff8ed]">Design Directive</h3>
-                    <p className="mt-3 text-sm md:text-base leading-7 font-medium text-stone-100">
-                      Use strong, bold text with high contrast at all times. All future background photography, leaf textures, or branded fall artwork should be uploaded later as layered assets so the layout remains stable and GitHub-ready now.
-                    </p>
-                  </div>
-                </div>
+    .brand h1 {
+      margin: 0;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+    }
+
+    .brand p {
+      margin: 8px 0 0;
+      font-size: 15px;
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      border-radius: 14px;
+      padding: 11px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      transition: 0.2s ease;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-primary {
+      background: var(--button-light);
+      color: var(--button-light-text);
+      border: none;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(0.98);
+    }
+
+    .content {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 32px 24px 48px;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+    }
+
+    .left-col,
+    .right-col {
+      display: grid;
+      gap: 24px;
+      align-content: start;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #ffd6a9;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: 54px;
+      line-height: 1.05;
+      font-weight: 900;
+      color: var(--text-main);
+    }
+
+    .hero-title span {
+      display: block;
+      color: #ffe0c2;
+    }
+
+    .hero-text {
+      margin: 18px 0 0;
+      font-size: 18px;
+      line-height: 1.75;
+      font-weight: 600;
+      color: var(--text-soft);
+      max-width: 850px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .chat-card {
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .chat-header {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .chat-header h2 {
+      margin: 0;
+      font-size: 22px;
+      color: var(--text-main);
+    }
+
+    .chat-header p {
+      margin: 8px 0 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .chat-body {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .message-row {
+      display: flex;
+    }
+
+    .message-row.user {
+      justify-content: flex-end;
+    }
+
+    .message-row.ai {
+      justify-content: flex-start;
+    }
+
+    .bubble {
+      max-width: 760px;
+      padding: 18px 20px;
+      border-radius: 24px;
+      font-size: 16px;
+      line-height: 1.7;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .bubble.ai {
+      background: rgba(18, 11, 9, 0.84);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      border-bottom-left-radius: 8px;
+    }
+
+    .bubble.user {
+      background: linear-gradient(90deg, #7d1f1a, #a64f24, #c07a38);
+      color: #fff;
+      border-bottom-right-radius: 8px;
+      font-weight: 600;
+    }
+
+    .chat-input-wrap {
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.12);
+      padding: 20px 22px 22px;
+    }
+
+    .chat-input-box {
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(15, 9, 8, 0.86);
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      resize: vertical;
+      background: transparent;
+      color: var(--text-main);
+      border: none;
+      outline: none;
+      font-size: 16px;
+      line-height: 1.6;
+      font-family: inherit;
+      padding: 10px 12px;
+    }
+
+    textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .input-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .small-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .small-pill {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 12px;
+    }
+
+    .send-btn {
+      border: none;
+      border-radius: 18px;
+      padding: 14px 22px;
+      background: var(--button-light);
+      color: var(--button-light-text);
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+
+    .send-btn:hover {
+      filter: brightness(0.98);
+    }
+
+    .chat-note {
+      margin: 14px 0 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .side-card h3 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--text-main);
+    }
+
+    .side-card p {
+      margin: 14px 0 0;
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-soft);
+    }
+
+    .feature-card h4 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--text-main);
+    }
+
+    .feature-card p {
+      margin: 10px 0 0;
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .footer-bar {
+      margin-top: 8px;
+      padding: 0 24px 34px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 1100px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 46px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .sidebar {
+        display: none;
+      }
+
+      .topbar {
+        padding: 18px 18px;
+      }
+
+      .content {
+        padding: 22px 16px 34px;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .bubble {
+        font-size: 15px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .topbar-actions {
+        width: 100%;
+      }
+
+      .topbar-actions .btn {
+        flex: 1;
+      }
+
+      .card {
+        padding: 22px 18px;
+      }
+
+      .chat-header,
+      .chat-body,
+      .chat-input-wrap {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .hero-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="app">
+      <aside class="sidebar">
+        <button class="new-btn">+ Start New Reflection</button>
+
+        <nav>
+          <a href="#" class="nav-item">Today felt heavy</a>
+          <a href="#" class="nav-item">Help me say this calmly</a>
+          <a href="#" class="nav-item">What am I carrying?</a>
+          <a href="#" class="nav-item">How do I slow down?</a>
+        </nav>
+
+        <div class="membership-box">
+          <h3>P.E.R.C. Membership</h3>
+          <p>Private access for paying users seeking a protected, warm reflection space.</p>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="brand">
+            <h1>P.E.R.C.</h1>
+            <p>Personal Emotional Reflection Companion</p>
+          </div>
+
+          <div class="topbar-actions">
+            <button class="btn btn-outline">Sign In</button>
+            <button class="btn btn-primary">Member Access</button>
+          </div>
+        </header>
+
+        <section class="content">
+          <div class="left-col">
+            <section class="card">
+              <p class="eyebrow">Generate Balanced Communication</p>
+              <h2 class="hero-title">
+                Reflect with clarity.
+                <span>Respond with balance.</span>
+              </h2>
+              <p class="hero-text">
+                P.E.R.C. helps users turn private thoughts into calm, balanced expression.
+                Built with the SoulWynd Codex, this member-based experience supports
+                emotional reflection, healthier communication, and steady self-awareness
+                through empathy, integrity, and sustainable pace.
+              </p>
+
+              <div class="pill-row">
+                <span class="pill">Non-diagnostic</span>
+                <span class="pill">Private reflection</span>
+                <span class="pill">Codex-guided support</span>
               </div>
             </section>
-          </main>
+
+            <section class="card chat-card">
+              <div class="chat-header">
+                <h2>Reflection Space</h2>
+                <p>ChatGPT-style conversation flow for member-only emotional reflection.</p>
+              </div>
+
+              <div class="chat-body">
+                <div class="message-row ai">
+                  <div class="bubble ai">
+                    Hi, I’m here with you. This space is yours — no judgment, no rush.
+                    What’s been sitting with you today?
+                  </div>
+                </div>
+
+                <div class="message-row user">
+                  <div class="bubble user">
+                    I need help putting how I feel into words without sounding reactive.
+                  </div>
+                </div>
+
+                <div class="message-row ai">
+                  <div class="bubble ai">
+                    That makes sense. We can slow it down and shape it clearly.
+                    Start with one thread: what feels most important to express without
+                    losing your balance?
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-input-wrap">
+                <div class="chat-input-box">
+                  <textarea placeholder="Share what is on your mind..."></textarea>
+
+                  <div class="input-footer">
+                    <div class="small-pills">
+                      <span class="small-pill">Expression first</span>
+                      <span class="small-pill">Calm guidance</span>
+                      <span class="small-pill">Clear words</span>
+                      <span class="small-pill">Private access</span>
+                    </div>
+
+                    <button class="send-btn">Send Reflection</button>
+                  </div>
+                </div>
+
+                <p class="chat-note">
+                  Background images and seasonal artwork can be uploaded later without changing this structure.
+                </p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="right-col">
+            <section class="card side-card">
+              <h3>Built from the Codex</h3>
+              <p>
+                SoulWynd’s core trifecta — Soul, Signal, and Soil — shapes every reflection.
+                P.E.R.C. invites expression first, validates emotion without shame,
+                and supports calm, balanced communication at a sustainable pace.
+              </p>
+            </section>
+
+            <section class="card feature-card">
+              <h4>Expression First</h4>
+              <p>
+                P.E.R.C. opens with reflection, validates emotion without stigma,
+                and helps users move toward calm, balanced communication.
+              </p>
+            </section>
+
+            <section class="card feature-card">
+              <h4>Private Member Access</h4>
+              <p>
+                This experience is intended for paying members only, creating a more focused,
+                protected space for personal reflection.
+              </p>
+            </section>
+
+            <section class="card feature-card">
+              <h4>SoulWynd Codex Aligned</h4>
+              <p>
+                Built on Soul, Signal, and Soil — empathy, integrity, and sustainable pace
+                guide every interaction.
+              </p>
+            </section>
+
+            <section class="card side-card">
+              <h3>Design Directive</h3>
+              <p>
+                Use strong, bold text with high contrast at all times. All future background
+                photography, leaf textures, or branded fall artwork can be uploaded later as
+                layered assets while keeping this layout intact.
+              </p>
+            </section>
+          </aside>
+        </section>
+
+        <div class="footer-bar">
+          P.E.R.C. is a private emotional reflection companion designed for clear communication,
+          warm support, and balanced self-expression.
         </div>
-      </div>
+      </main>
     </div>
-  );
-}
+  </div>
+</body>
+</html>
